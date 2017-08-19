@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MotionVenusSDK", "MotionVenusSDK\MotionVenusSDK.vcxproj", "{3C81D6E9-13A2-47FD-836E-794102C55726}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MotionVenusSDK_Test", "MotionVenusSDK_Test\MotionVenusSDK_Test.vcxproj", "{02DFC1B7-B84C-407F-B3C9-C6793B46B19A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3C81D6E9-13A2-47FD-836E-794102C55726} = {3C81D6E9-13A2-47FD-836E-794102C55726}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C81D6E9-13A2-47FD-836E-794102C55726}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3C81D6E9-13A2-47FD-836E-794102C55726}.Debug|Win32.Build.0 = Debug|Win32
+		{3C81D6E9-13A2-47FD-836E-794102C55726}.Release|Win32.ActiveCfg = Release|Win32
+		{3C81D6E9-13A2-47FD-836E-794102C55726}.Release|Win32.Build.0 = Release|Win32
+		{02DFC1B7-B84C-407F-B3C9-C6793B46B19A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{02DFC1B7-B84C-407F-B3C9-C6793B46B19A}.Debug|Win32.Build.0 = Debug|Win32
+		{02DFC1B7-B84C-407F-B3C9-C6793B46B19A}.Release|Win32.ActiveCfg = Release|Win32
+		{02DFC1B7-B84C-407F-B3C9-C6793B46B19A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
