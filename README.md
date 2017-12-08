@@ -8,6 +8,11 @@
 <img src="https://raw.githubusercontent.com/FOHEART/MotionVenusSDK/master/help/img/sdkrunning.png"/>
 </div>
 
+## 0.开发工具
+SDK及Demo程序所有部分均提供**源码**。<br>
+SDK部分使用c语言开发，Demo程序使用C++开发。<br>
+工程使用**Visual Studio 2013**打包。
+
 ## 1. 功能描述
 1. 通过UDP接收来自一个或多个MotionVenus客户端的实时数据流。<br>
 2. 实时的23段人体骨骼的空间位置与旋转。<br>
