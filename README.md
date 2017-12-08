@@ -29,6 +29,11 @@ SDK部分使用c语言开发，Demo程序使用C++开发。<br>
 </div>
 
 ## 3.骨骼对应关系
+<div align=center>
+<img src="https://raw.githubusercontent.com/FOHEART/MotionVenusSDK/v1.3.0/help/img/ctls.png"/>
+</div>
+
+
 默认的编号对应的人体骨骼关系是：
 <div align=center>
 <table>
