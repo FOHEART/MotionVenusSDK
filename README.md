@@ -23,11 +23,42 @@
 </table>
 </div>
 
-## 3. 使用方法
+## 3.骨骼对应关系
+默认的编号对应的人体骨骼关系是：
+<div align=center>
+<table>
+   <tr><th>索引</th><th>名称</th><th>备注</th></tr>
+   <tr><th>0</th><th>Spine或Hips</th><th>类人模型的根节点，控制整个人体的位移和根关节点的旋转</th></tr>
+	<tr><th>1</th><th>Spine1</th><th>相当于人体L3~L5段骨骼</th></tr>
+	<tr><th>2</th><th>Spine2</th><th>相当于人体T12~L2段骨骼</th></tr>
+	<tr><th>3</th><th>Spine3</th><th>相当于人体T8~T11段骨骼</th></tr>
+	<tr><th>4</th><th>Spine4</th><th>相当于人体T1~T7段骨骼</th></tr>
+	<tr><th>5</th><th>Neck</th><th></th></tr>
+	<tr><th>6</th><th>Head</th><th></th></tr>
+	<tr><th>7</th><th>RightShoulder</th><th></th></tr>
+	<tr><th>8</th><th>RightArm</th><th></th></tr>
+	<tr><th>9</th><th>RightForeArm</th><th></th></tr>
+	<tr><th>10</th><th>RightHand</th><th></th></tr>
+	<tr><th>11</th><th>LeftShoulder</th><th></th></tr>
+	<tr><th>12</th><th>LeftArm</th><th></th></tr>
+	<tr><th>13</th><th>LeftForeArm</th><th></th></tr>
+	<tr><th>14</th><th>LeftHand</th><th></th></tr>
+	<tr><th>15</th><th>RightUpLeg</th><th></th></tr>
+	<tr><th>16</th><th>RightLeg</th><th></th></tr>
+	<tr><th>17</th><th>RightFoot</th><th></th></tr>
+	<tr><th>18</th><th>RightToeBase </th><th>右脚尖</th></tr>
+	<tr><th>19</th><th>LeftUpLeg</th><th></th></tr>
+	<tr><th>20</th><th>LeftLeg</th><th></th></tr>
+	<tr><th>21</th><th>LeftFoot</th><th></th></tr>
+	<tr><th>22</th><th>LeftToeBase</th><th>左脚尖</th></tr>
+</table>
+</div>
+
+## 4. 使用方法
 1. 解压或clone到本地硬盘的任意位置。
 2. 设置MotionVenusSDK_Test工程为启动程序。
 3. 编译运行。
-## 4.使用场景
+## 5.使用场景
 
 本SDK提供了基于人体动力学的23段骨骼模型，同时给出了每段骨骼的旋转与空间位置，可应用于例如：
 1. 医学应用，例如肘、肩关节运动分析，脊柱弯曲度分析，下肢动力学分析等等方面。
