@@ -14,6 +14,7 @@
 3. SDK已封装为dll库，支持多线程处理。<br>
 4. 配有DEMO程序。
 ## 2.数据类型单位制
+
 <div align=center>
 <table>
   <tr><th>数据类型</th><th>单位</th></tr>
@@ -21,6 +22,7 @@
   <tr><th>欧拉角</th><th>angle（度）</th></tr>
 </table>
 </div>
+
 ## 3. 使用方法
 1. 解压或clone到本地硬盘的任意位置。
 2. 设置MotionVenusSDK_Test工程为启动程序。
