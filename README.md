@@ -18,7 +18,7 @@
 <div align=center>
 <table>
   <tr><th>数据类型</th><th>单位</th></tr>
-  <tr><th>位置</th><th>m（米）</th></tr>
+  <tr><th>位置</th><th>meter（米）</th></tr>
   <tr><th>欧拉角</th><th>angle（度）</th></tr>
 </table>
 </div>
