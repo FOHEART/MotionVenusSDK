@@ -84,7 +84,7 @@ xcopy /r/y $(ProjectDir)\Debug\$(TargetName).dll $(SolutionDir)\$(ProjectName)_T
     </Link>
     <PostBuildEvent>
       <Command>xcopy /r/y $(ProjectDir)\Release\$(TargetName).lib $(SolutionDir)\$(ProjectName)_Test\lib\Release
-xcopy /r/y $(ProjectDir)\Release\$(TargetName).dll $(SolutionDir)\$(ProjectName)_Test\Release</Command>
+xcopy /r/y $(ProjectDir)\Release\$(TargetName).dll $(SolutionDir)\$(ProjectName)_Test\lib\Release</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
