@@ -14,15 +14,27 @@
 
 #define SOCKET_REF void*
 
-typedef enum _CalculationType
+
+
+typedef enum _StreamType
 {
-	Position_only,		//MotionVenus only send bone position data.
-	Euler_only,			//MotionVenus only send euler data.
-	Quat_only,			//MotionVenus only send quaternion data.
-	Position_Euler,		//MotionVenus send position and euler data.
-	Position_Quat,		//MotionVenus send position and quaternion data.
-	Euler_Quat,			//MotionVenus send euler and quaternion data.
-}CalculationType;
+	ST_Binary,
+	ST_String
+}StreamType;
+
+/*  发送数据类型顺序 Position-（Euler/Quat）-Accel-Mag-Gyro  */
+typedef struct _SendDataType
+{
+	_SendDataType() :bEuler(false), bQuat(false), bPosition(false),
+	bAccel(false), bMag(false), bGyro(false){}
+	bool bEuler;	//MotionVenus send euler angle data.
+	bool bQuat;		//MotionVenus send quaternion data.
+	bool bPosition; //MotionVenus send position data.
+	bool bAccel;	//MotionVenus send Accel data.
+	bool bMag;		//MotionVenus send magnetic data.
+	bool bGyro;		//MotionVenus send gyroscope data.
+}SendDataType;
+
 typedef struct _data_header
 {
 	uint16_t   protocolVersion;   //protocol version
@@ -43,15 +55,19 @@ enum SuitType
     Register receiving and parsed Calculation Data callback
 	sender: socket obj
 	header: data header
-	data: sort by position(float[3]),Euler(float[3]),Quat(float[4])
+	data: ST_Binary: sort by position(float[3]),Euler(float[3]),Quat(float[4]),Accel(float[3]);
+		  ST_String: (char*)data;
 	countFloat: 
-		Position_only: 3;
-		Euler_only	: 3;
-		Quat_only	: 4;
-		Position_Euler:6;
-		Position_Quat:7;
+		Euler_only			: 3;
+		Quat_only			: 4;
+		Position_Euler		: 6;
+		Position_Quat		: 7;
+		Euler_Accel			: 6;
+		Quat_Accel			: 7;
+		Position_Euler_Accel: 9;
+		Position_Quat_Accel	: 10;
 */
-typedef void(__stdcall *CalculationDataRecv)(void* customedObj, SOCKET_REF sender, CalDataHeader* header, float* data, int countFloat);
+typedef void(__stdcall *CalculationDataRecv)(void* customedObj, SOCKET_REF sender, CalDataHeader* header, void* data, int countFloat);
 
 #ifdef __cplusplus
 extern "C" {
@@ -60,16 +76,12 @@ extern "C" {
 //Register function
 /*
 	customedObj : function identification number or user transmission data and so on, not null.
-	calType: Calculation type:
-								Position_only;
-								Euler_only;
-								Quat_only;
-								Position_Euler;
-								Position_Quat.
+	StreamType :  ST_Binary / ST_String
+	DataType: Configure the selection according to the Settings in the MotionVenus.
 	sType: SuitType : Wireless/wired.
 	handle : function pointer.
 */
-FODATARECV_API void FoRegisterCalDataRecvFunction(void* customedObj, CalculationType calType, SuitType sType, CalculationDataRecv handle);
+	FODATARECV_API void FoRegisterCalDataRecvFunction(void* customedObj, StreamType streamType, SendDataType dataType, SuitType sType, CalculationDataRecv handle);
 
 //connect to server, and return socket obj
 FODATARECV_API SOCKET_REF FoConnectTo(char* serverIP, int nPort);

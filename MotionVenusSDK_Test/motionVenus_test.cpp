@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
+#include <fstream>
 
 #include "../MotionVenusSDK/motionVenusSDK.h"
 using namespace std;
@@ -87,7 +88,7 @@ typedef enum{
 	K23_Total
 }K23_Skeleton;
 
-void __stdcall CalDataRecv(void* customedObj, SOCKET_REF sender, CalDataHeader* header, float* data, int countFloat)
+void __stdcall CalDataRecv(void* customedObj, SOCKET_REF sender, CalDataHeader* header, void* data, int countFloat)
 {
 #define POS_RULER_PAIR_LEN (6)
 #define POS_X_INDEX (0)
@@ -99,20 +100,44 @@ void __stdcall CalDataRecv(void* customedObj, SOCKET_REF sender, CalDataHeader* 
 	char* buf = (char*) header->AvatarName;
 	std::string posAndEuler;
 	std::stringstream buffer;
+	char* pData = (char*)data;
 
-	for (uint8_t i = 0; i < K23_Total; i++)
-	{
+	printf("%s\n", pData);
 
-		buffer<< kinemHumanSkeleton23[i]<<":pos[x,y,z](";
-		buffer << data[i * POS_RULER_PAIR_LEN + POS_X_INDEX] << ", ";
-		buffer << data[i * POS_RULER_PAIR_LEN + POS_Y_INDEX] << ", ";
-		buffer << data[i * POS_RULER_PAIR_LEN + POS_Z_INDEX] << ") angle[x,y,z](";
+	//for (uint8_t i = 0; i < K23_Total; i++)
+	//{
 
-		buffer << data[i * POS_RULER_PAIR_LEN + EULER_X_INDEX] << ", ";
-		buffer << data[i * POS_RULER_PAIR_LEN + EULER_Y_INDEX] << ", ";
-		buffer << data[i * POS_RULER_PAIR_LEN + EULER_Z_INDEX] << ") \r\n";
-	}
-	printf("sender:%d==,%s : %d -- \r\n%s\r\n", (int) sender, buf, countFloat, buffer.str().c_str());
+	//	buffer<< kinemHumanSkeleton23[i]<<":pos[x,y,z](";
+	//	//buffer << data[i * POS_RULER_PAIR_LEN + POS_X_INDEX] << ", ";
+	//	//buffer << data[i * POS_RULER_PAIR_LEN + POS_Y_INDEX] << ", ";
+	//	//buffer << data[i * POS_RULER_PAIR_LEN + POS_Z_INDEX] << ") angle[x,y,z](";
+
+	//	buffer << data[i * POS_RULER_PAIR_LEN + EULER_X_INDEX] << ", ";
+	//	buffer << data[i * POS_RULER_PAIR_LEN + EULER_Y_INDEX] << ", ";
+	//	buffer << data[i * POS_RULER_PAIR_LEN + EULER_Z_INDEX] << ") \r\n";
+	//	
+	//}
+
+	//std::ofstream ofs;
+	//ofs.open("D:\\11111.txt", ios_base::app);
+	//ofs << pData;
+	//ofs << "\n";
+	//ofs.close();
+
+	
+	
+
+	//ofs << data[K23_RightShoulder* POS_RULER_PAIR_LEN + EULER_X_INDEX] << ",";
+	//ofs << data[K23_RightShoulder* POS_RULER_PAIR_LEN + EULER_Y_INDEX] << ",";
+	//ofs << data[K23_RightShoulder* POS_RULER_PAIR_LEN + EULER_Z_INDEX] << ",";
+
+	//ofs << data[K23_RightUpperArm * POS_RULER_PAIR_LEN + POS_X_INDEX] << ",";
+	//ofs << data[K23_RightUpperArm * POS_RULER_PAIR_LEN + POS_Y_INDEX] << ",";
+	//ofs << data[K23_RightUpperArm * POS_RULER_PAIR_LEN + POS_Z_INDEX] << "\r\n";
+
+	//ofs.close();
+
+	//printf("sender:%d==,%s : %d -- \r\n%s\r\n", (int) sender, buf, countFloat, buffer.str().c_str());
 	//system("cls");
 }
 
@@ -131,7 +156,15 @@ int _tmain(int argc, _TCHAR* argv [])
 	{
 		printf("Bind success. Start Reading Data...\r\n");
 	}
-	FoRegisterCalDataRecvFunction(NULL, Position_Euler, Wireless, CalDataRecv);
+
+	SendDataType type;
+	type.bPosition = true;
+	type.bEuler = true;
+	//type.bQuat = true;
+	//type.bAccel = true;
+	//type.bMag = true;
+	//type.bGyro = true;
+	FoRegisterCalDataRecvFunction(NULL, ST_String, type, Wireless, CalDataRecv);
 	while (true)
 	{
 		Sleep(1);
